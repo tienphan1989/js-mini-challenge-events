@@ -40,7 +40,44 @@ function toggleColor(element) {
   }
 }
 
+const header = document.querySelector("h1#header");
+header.addEventListener('click', function(){
+  toggleColor(this);
+});
+
 
 /***** Deliverable 2 *****/
+const newPlayer = document.querySelector("#new-player-form");
+
+newPlayer.addEventListener('submit', function(e){
+  e.preventDefault()
+
+  // const newPlayer = {
+  //   number: e.target.number.value,
+  //   name: e.target.name.value,
+  //   nickname: e.target.nickname.value,
+  //   photo: e.target.photo.value,
+  //   likes: 0
+  // }
+  
+  console.log(e.target);
+  let newPlayer1 = {};
+  newPlayer1["number"] = e.target.number.value;
+  newPlayer1["name"] = e.target.name.value;
+  newPlayer1["nickname"] = e.target.nickname.value;
+  newPlayer1["photo"] = e.target.photo.value;
+  
+  renderPlayer(newPlayer1);
+});
+
+
 
 /***** Deliverable 3 *****/
+document.querySelector('.player-container').addEventListener('click', e => {
+  if(e.target.matches(".like-button")) {
+    const playerDiv = e.target.closest(".player");
+    const likesP = playerDiv.querySelector(".likes");
+    const newLikes = parseInt(likesP.textContent) + 1;
+    likesP.textContent = `${newLikes} likes`;
+  }
+})
